@@ -581,10 +581,6 @@ button, input[type="submit"], input[type="reset"] {
 
 }
 
-
-
-
-
 .button__group{
   display: flex;
   align-items: center;

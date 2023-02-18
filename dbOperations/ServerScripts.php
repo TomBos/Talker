@@ -17,4 +17,3 @@ function consolelog($data)
     echo "<script>console.log(' ');</script>";
 }
 
-
