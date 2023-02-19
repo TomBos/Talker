@@ -10,12 +10,9 @@ if ($usersIdentification == "") {
     header("location: ../index.php");
 }
 
-if (!file_exists('../FileShare/DontDeleteMe.md')) {
+if (!file_exists('../FileShare')) {
     mkdir('../FileShare', 0777, true);
 }
-
-
-
 
 
 
@@ -78,7 +75,42 @@ if (!file_exists('../FileShare/DontDeleteMe.md')) {
             <span class="span section__subtitle">Share Files as You Please</span>
 
 
-           
+
+            <div class="skills__container container grid">
+                <div>
+
+                    <?php
+                    $result = [];
+                    foreach (glob('../FileShare/*.*') as $file) {
+                        $result[] = [filemtime($file), basename($file)];
+                    }
+
+                    sort($result);
+                    
+                    for ($i = 2; $i < count($result); $i++) {
+
+
+
+                        print("
+
+                        <a download='' href='../FileShare/" . $result[$i][1] . "' class='skills__header'>
+                            <i class='uil uil-file-share-alt skills__icon'></i>
+
+                            <div>
+                                <h1 class='skills__title'>" . $result[$i][1] . "</h1>
+                                <span class='skills__subtitle'> Uploaded By " . ucfirst($_SESSION['userName']) . "</span>
+                            </div>
+                        </a>
+
+
+                        ");
+                    }
+                    
+                    ?>
+
+
+                </div>
+            </div>
 
 
 
@@ -95,14 +127,14 @@ if (!file_exists('../FileShare/DontDeleteMe.md')) {
                 <form id="form" action="../ServerSidePageOperations/Upload.php" enctype="multipart/form-data" method="POST" class="contact__form grid">
 
                     <label for="fileInput" class="contact__content">
-                        <label  class="contact__label"> Click Me To Upload Files <i class="uil uil-file-plus-alt"></i>
+                        <label class="contact__label"> Click Me To Upload Files <i class="uil uil-file-plus-alt"></i>
                             <input type="file" id="fileInput" name="file" class="contact__input" required></input>
                         </label>
                     </label>
 
-                    <button type="submit" id="ChatBox" name="submit" class="button button--flex">
-                        Send Message
-                        <i class="uil uil-message button__icon"></i>
+                    <button type="submit" value="upload" id="FileBox" name="submit" class="button button--flex">
+                        Upload File
+                        <i class="uil uil-cloud-upload button__icon"></i>
                     </button>
                 </form>
             </div>
@@ -119,6 +151,7 @@ if (!file_exists('../FileShare/DontDeleteMe.md')) {
             not getting paid at all) </span>
     </section>
 </div>
+
 
 
 </body>

@@ -449,6 +449,63 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 
+/*==================== SKILLS ====================*/
+.skills__container{
+  row-gap: 0;
+}
+
+.skills__header{
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--mb-2-5);
+  cursor: pointer;
+}
+
+.skills__icon,
+.skills__arrow{
+  font-size: 3rem;
+  color: var(--first-color);
+}
+
+.skills__icon{
+  margin-right: var(--mb-0-75);
+}
+
+.skills__title{
+  font-size: var(--h3-font-size);
+}
+
+.skills__subtitle{
+  font-size: var(--small-font-size);
+  color: var(--text-color);
+}
+
+.skills__arrow{
+  margin-left: auto;
+  margin-bottom: var(--mb-1-5);
+}
+
+.skills__list{
+  row-gap: 1.5rem;
+  padding-left: 2.7rem;
+}
+
+.skills__titles{
+  display: flex;
+  justify-content: left;
+  margin-bottom: var(--mb-0-5);
+}
+
+.skills__name{
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-medium);
+}
+
+
+
+
+
+
 /*==================== MEDIA QUERIES ====================*/
 /* For small devices */
 @media screen and (max-width: 499px) {

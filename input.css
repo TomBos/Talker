@@ -1,14 +1,11 @@
-input{
-    visibility: hidden;
+.input_container {
+  border: 1px solid #e5e5e5;
 }
 
-label{
-    cursor: pointer;
+input[type="file"]::file-selector-button {
+  display: none;
 }
 
-
-.label__centered{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+input[type="file"]::file-selector-button:hover {
+    display: none;
 }
