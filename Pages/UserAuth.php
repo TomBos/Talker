@@ -4,9 +4,9 @@ $dataBaseName = '20ic01';
 
 
 if (isset($_POST['submit'])) {
-    $userName = trim($_POST['name']);
-    $userPassword = trim($_POST['password']);
-    $userVerificationPassword = trim($_POST['retyped_password']);
+    $userName = strtolower(trim($_POST['name']));
+    $userPassword = strtolower(trim($_POST['password']));
+    $userVerificationPassword = strtolower(trim($_POST['retyped_password']));
 
     $insertIntoUsersQuery = "INSERT INTO `$dataBaseName`.`users2` (`username`,`password`)VALUES ('$userName','" . sha1($userPassword) . "')";
 

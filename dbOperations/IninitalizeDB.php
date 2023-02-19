@@ -1,5 +1,5 @@
 <?php
-require 'connect.php';
+require 'Connect.php';
 
 $dataBaseName = '20ic01';
 

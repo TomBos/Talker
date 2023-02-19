@@ -1,0 +1,14 @@
+input{
+    visibility: hidden;
+}
+
+label{
+    cursor: pointer;
+}
+
+
+.label__centered{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

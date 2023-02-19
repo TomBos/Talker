@@ -23,9 +23,10 @@ if (isset($_POST['submit'])) {
     $insertMessageQuery = "INSERT INTO `$dataBaseName`.`messages` (`message`,`users_id`,`sended_at`) VALUE ('$message','$usersIdentification','$curentDate')";
     $result = mysqli_query($connection, $insertMessageQuery);
     if (!$result) {
+
         consolelog("Failed To Insert Data Into Table Containing Messages!");
     } else {
-        header("location: MainSection.php");
+        header("location: Chat.php");
     }
 }
 
@@ -51,7 +52,7 @@ if (!$result) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <title>Talker - Home</title>
+    <title>Talker - Chat</title>
 </head>
 
 <div class="too-small2">
@@ -65,11 +66,19 @@ if (!$result) {
 
             <div class="nav__menu " id="nav-menu">
                 <ul class="nav__list grid">
+
+                    <li class="nav__item">
+                        <a href="Files.php" class="nav__link">
+                            <i class="uil uil-message nav__icon"></i>File Sharing
+                        </a>
+                    </li>
+
                     <li class="nav__item">
                         <a href="../index.php" class="nav__link">
                             <i class="uil uil-message nav__icon"></i>Log Out
                         </a>
                     </li>
+
                 </ul>
                 <i class="uil uil-times nav__close nav__icon" id="nav-close"></i>
             </div>
@@ -81,7 +90,7 @@ if (!$result) {
     <main class="main">
         <section class="section">
             <h2 class="section__title">Welcome To Talker <i class="uil uil-comment-lines"></i></h2>
-            <span class="span section__subtitle">Send Messages as You Please</span>
+            <span class="span section__subtitle">Broadcast Messages as You Please</span>
 
 
             <div id="result" class="services__container container">
@@ -111,8 +120,8 @@ if (!$result) {
 
                 <script>
                     setInterval(function() {
-                        var xhr = new XMLHttpRequest();
-                        xhr.open('GET', 'ReloadChat.php', true);
+                        let xhr = new XMLHttpRequest();
+                        xhr.open('GET', '../ServerSidePageOperations/ReloadChat.php', true);
                         xhr.onload = function() {
                             if (this.status == 200) {
                                 document.getElementById('result').innerHTML = this.responseText;
@@ -124,34 +133,34 @@ if (!$result) {
 
             </div>
 
-</div>
 
 
 
 
 
 
-</section>
+
+        </section>
 
 
-<section class="move-down">
-    <div class="contact__container container grid">
-        <form id="form" action=" MainSection.php#ChatBox" method="POST" class="contact__form grid">
+        <section class="move-down">
+            <div class="contact__container container grid">
+                <form id="form" action=" Chat.php#ChatBox" method="POST" class="contact__form grid">
 
-            <div class="contact__content">
-                <label for="" class="contact__label"> Message </label>
-                <input type="text" name="message" minlength="1" class="contact__input" required></input>
+                    <div class="contact__content">
+                        <label for="" class="contact__label"> Message </label>
+                        <input type="text" name="message" minlength="1" class="contact__input" required></input>
+                    </div>
+
+                    <button type="submit" id="ChatBox" name="submit" class="button button--flex">
+                        Send Message
+                        <i class="uil uil-message button__icon"></i>
+                    </button>
+                </form>
             </div>
 
-            <button type="submit" id="ChatBox" name="submit" class="button button--flex">
-                Send Message
-                <i class="uil uil-message button__icon"></i>
-            </button>
-        </form>
-    </div>
-
-</section>
-</main>
+        </section>
+    </main>
 </div>
 
 <div class="main resolution__text">

@@ -9,8 +9,8 @@ require 'dbOperations/IninitalizeDB.php';
 $dataBaseName = '20ic01';
 
 if (isset($_POST['user'])) {
-    $userSubmittedName = trim($_POST['name']);
-    $verifyPassword = sha1(trim($_POST['password']));
+    $userSubmittedName = strtolower(trim($_POST['name']));
+    $verifyPassword = sha1(strtolower(trim($_POST['password'])));
 
 
     $selectUserQuery = "SELECT `id`,`username`,`password` FROM `$dataBaseName`.`users2`";
@@ -28,7 +28,7 @@ if (isset($_POST['user'])) {
         } else {
             $_SESSION['userName'] = $databaseUsername;
             $_SESSION['userID'] = $databaseUserId;
-            header("location: Pages/MainSection.php");
+            header("location: Pages/Chat.php");
         }
     }
 }
@@ -78,7 +78,7 @@ if (isset($_POST['user'])) {
                                 Log In As an User
                                 <i class="uil uil-user button__icon"></i>
                             </button>
-                            <a href="Pages/CreateNewUser.php" class="button button--flex">
+                            <a href="Pages/UserAuth.php" class="button button--flex">
                                 Create A New Account
                                 <i class="uil uil-user-plus button__icon"></i>
                             </a>
