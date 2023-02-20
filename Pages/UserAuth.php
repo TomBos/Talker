@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {
     $userPassword = strtolower(trim($_POST['password']));
     $userVerificationPassword = strtolower(trim($_POST['retyped_password']));
 
-    $insertIntoUsersQuery = "INSERT INTO `$dataBaseName`.`users2` (`username`,`password`)VALUES ('$userName','" . sha1($userPassword) . "')";
+    $insertIntoUsersQuery = "INSERT INTO `$dataBaseName`.`Users` (`username`,`password`)VALUES ('$userName','" . sha1($userPassword) . "')";
 
     if ($userPassword != $userVerificationPassword) {
         consolelog("Wrong Password");

@@ -13,7 +13,7 @@ if (isset($_POST['user'])) {
     $verifyPassword = sha1(strtolower(trim($_POST['password'])));
 
 
-    $selectUserQuery = "SELECT `id`,`username`,`password` FROM `$dataBaseName`.`users2`";
+    $selectUserQuery = "SELECT `id`,`username`,`password` FROM `$dataBaseName`.`Users`";
     $result = mysqli_query($connection, $selectUserQuery);
     if (!$result) {
         consolelog("Failed To Get Data From Users Table!");

@@ -1,9 +1,6 @@
 <?php
 require '../dbOperations/IninitalizeDB.php';
 
-
-
-
 $curentDate = date_create()->format('Y-m-d H:i:s');
 
 $dataBaseName = '20ic01';
@@ -19,8 +16,7 @@ if (isset($_POST['submit'])) {
     $message = trim($_POST['message']);
 
 
-
-    $insertMessageQuery = "INSERT INTO `$dataBaseName`.`messages` (`message`,`users_id`,`sended_at`) VALUE ('$message','$usersIdentification','$curentDate')";
+    $insertMessageQuery = "INSERT INTO `$dataBaseName`.`Messages` (`message`,`users_id`,`sended_at`) VALUE ('$message','$usersIdentification','$curentDate')";
     $result = mysqli_query($connection, $insertMessageQuery);
     if (!$result) {
 
@@ -30,8 +26,8 @@ if (isset($_POST['submit'])) {
     }
 }
 
-$getMessages = "SELECT `M`.`message`, `U`.`username`, `M`.`sended_at`,`U`.`id` FROM `$dataBaseName`.`messages` AS M
-    INNER JOIN `$dataBaseName`.`users2` As U 
+$getMessages = "SELECT `M`.`message`, `U`.`username`, `M`.`sended_at`,`U`.`id` FROM `$dataBaseName`.`Messages` AS M
+    INNER JOIN `$dataBaseName`.`Users` As U 
     ON `M`.`users_id` = `U`.`id`
 ORDER BY `M`.`sended_at`";
 
@@ -61,7 +57,7 @@ if (!$result) {
 
 
             <?php
-            print("<a href='#' class='nav__logo'>" . ucfirst($_SESSION['userName']) . "</a>");
+            print("<a href='#' class='nav__logo'>" . ucwords($_SESSION['userName']) . "</a>");
             ?>
 
             <div class="nav__menu " id="nav-menu">
@@ -102,16 +98,16 @@ if (!$result) {
 
 
                     if ($usersIdentification == $sendersId) {
-                        $messageType = "messages__self";
+                        $messageType = "Messages__self";
                     } else {
-                        $messageType = "messages__other";
+                        $messageType = "Messages__other";
                     }
 
 
                     print("
                     <div class='$messageType'>
                         <a class='button__special button--flex'>
-                            " . ucfirst($sendersName) . ":  " . $messageFromSender . "
+                            " . ucwords($sendersName) . ":  " . $messageFromSender . "
                         </a>
                     </div>
                     ");

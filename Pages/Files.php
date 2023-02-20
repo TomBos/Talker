@@ -16,7 +16,18 @@ if (!file_exists('../FileShare')) {
 
 
 
+$getFiles = "SELECT `F`.`files`, `U`.`username`, `F`.`sended_at`,`U`.`id` 
+FROM `20ic01`.`Files` AS F
+    INNER JOIN `20ic01`.`Users` As U 
+    ON `F`.`users_id` = `U`.`id`
+ORDER BY `F`.`sended_at`";
 
+
+
+$queryResult = mysqli_query($connection, $getFiles);
+if (!$queryResult) {
+    consolelog("Failed To Get Data From Table Containing Files!");
+}
 
 
 
@@ -26,6 +37,7 @@ if (!file_exists('../FileShare')) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 
 <head>
     <meta charset="UTF-8">
@@ -43,7 +55,7 @@ if (!file_exists('../FileShare')) {
 
 
             <?php
-            print("<a href='#' class='nav__logo'>" . ucfirst($_SESSION['userName']) . "</a>");
+            print("<a href='#' class='nav__logo'>" . ucwords($_SESSION['userName']) . "</a>");
             ?>
 
             <div class="nav__menu " id="nav-menu">
@@ -69,45 +81,62 @@ if (!file_exists('../FileShare')) {
     </header>
 
 
-    <main class="main">
+    <main class='main'>
         <section class="section">
             <h2 class="section__title">Welcome To Talker <i class="uil uil-file-upload-alt"></i></h2>
-            <span class="span section__subtitle">Share Files as You Please</span>
-
-
+            <span class="span section__subtitle">Share Files as You Please (Max 500KB - Rename the File to .txt Or .jpg)</span>
 
             <div class="skills__container container grid">
-                <div>
+                <div id="fileHolder">
 
                     <?php
+
+                    $sendersNames = array();
+                    while ($row = mysqli_fetch_row($queryResult)) {
+                        array_push($sendersNames, $row[1]);
+                    }
+
+
                     $result = [];
                     foreach (glob('../FileShare/*.*') as $file) {
                         $result[] = [filemtime($file), basename($file)];
                     }
 
                     sort($result);
-                    
-                    for ($i = 2; $i < count($result); $i++) {
 
+                    for ($i = 0; $i < count($result); $i++) {
+                        $fileName = $result[$i][1];
 
 
                         print("
 
-                        <a download='' href='../FileShare/" . $result[$i][1] . "' class='skills__header'>
+                        <a download='' href='../FileShare/" . $fileName . "' class='skills__header'>
                             <i class='uil uil-file-share-alt skills__icon'></i>
 
                             <div>
-                                <h1 class='skills__title'>" . $result[$i][1] . "</h1>
-                                <span class='skills__subtitle'> Uploaded By " . ucfirst($_SESSION['userName']) . "</span>
+                                <h1 class='skills__title'>" . $fileName . "</h1>
+                                <span class='skills__subtitle'> Uploaded By: " . ucwords($sendersNames[$i]) . "</span>
                             </div>
                         </a>
 
-
                         ");
                     }
-                    
+
                     ?>
 
+
+                    <script>
+                        setInterval(function() {
+                            let xhr = new XMLHttpRequest();
+                            xhr.open('GET', '../ServerSidePageOperations/ReloadFiles.php', true);
+                            xhr.onload = function() {
+                                if (this.status == 200) {
+                                    document.getElementById('fileHolder').innerHTML = this.responseText;
+                                }
+                            };
+                            xhr.send();
+                        }, 2000);
+                    </script>
 
                 </div>
             </div>

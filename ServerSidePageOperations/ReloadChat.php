@@ -4,8 +4,8 @@ include '../dbOperations/IninitalizeDB.php';
 $usersIdentification = $_SESSION['userID'];
 
 
-$getMessages = "SELECT `M`.`message`, `U`.`username`, `M`.`sended_at`,`U`.`id` FROM `$dataBaseName`.`messages` AS M
-    INNER JOIN `$dataBaseName`.`users2` As U 
+$getMessages = "SELECT `M`.`message`, `U`.`username`, `M`.`sended_at`,`U`.`id` FROM `$dataBaseName`.`Messages` AS M
+    INNER JOIN `$dataBaseName`.`Users` As U 
     ON `M`.`users_id` = `U`.`id`
     ORDER BY `M`.`sended_at`";
 
@@ -15,7 +15,6 @@ $getMessages = "SELECT `M`.`message`, `U`.`username`, `M`.`sended_at`,`U`.`id` F
         consolelog("Failed To Get Data From Table Containing Messages!");
     }
 
-    $htmlString = "";
     while ($row = mysqli_fetch_row($result)) {
         $messageFromSender   =  $row[0];
         $sendersName =  $row[1];
@@ -23,16 +22,16 @@ $getMessages = "SELECT `M`.`message`, `U`.`username`, `M`.`sended_at`,`U`.`id` F
 
 
         if ($usersIdentification == $sendersId) {
-            $messageType = "messages__self";
+            $messageType = "Messages__self";
         } else {
-            $messageType = "messages__other";
+            $messageType = "Messages__other";
         }
 
 
         print("
             <div class='$messageType'>
                 <a class='button__special button--flex'>
-                    " . ucfirst($sendersName) . ":  " . $messageFromSender . "
+                    " . ucwords($sendersName) . ":  " . $messageFromSender . "
                 </a>
             </div>
         ");
