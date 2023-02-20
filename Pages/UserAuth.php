@@ -1,6 +1,5 @@
 <?php
 require '../dbOperations/IninitalizeDB.php';
-$dataBaseName = '20ic01';
 
 
 if (isset($_POST['submit'])) {

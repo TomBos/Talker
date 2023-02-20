@@ -2,10 +2,6 @@
 require '../dbOperations/IninitalizeDB.php';
 
 
-if (!file_exists('../FileShare')) {
-    mkdir('../FileShare', 0777, true);
-}
-
 
 
 $dataBaseName = '20ic01';

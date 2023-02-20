@@ -1,13 +1,16 @@
 <?php
 require 'Connect.php';
 
-$dataBaseName = '20ic01';
-
- 
 
 $createDB = "CREATE DATABASE IF NOT EXISTS `$dataBaseName`";
 if(!mysqli_query($connection, $createDB)){
     consolelog("Failed To Create DB!");
+}
+
+$connection = mysqli_connect('localhost', 'root', 'password',$dataBaseName);
+
+if ($connection) {
+    consolelog("DB Connected!");
 }
 
 

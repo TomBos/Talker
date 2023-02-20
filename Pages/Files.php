@@ -1,18 +1,13 @@
 <?php
 require '../dbOperations/IninitalizeDB.php';
 
-$curentDate = date_create()->format('Y-m-d H:i:s');
-
-$dataBaseName = '20ic01';
 $usersIdentification = $_SESSION['userID'];
 
 if ($usersIdentification == "") {
     header("location: ../index.php");
 }
 
-if (!file_exists('../FileShare')) {
-    mkdir('../FileShare', 0777, true);
-}
+
 
 
 
@@ -55,7 +50,7 @@ if (!$queryResult) {
 
 
             <?php
-            print("<a href='#' class='nav__logo'>" . ucwords($_SESSION['userName']) . "</a>");
+            importNavName();
             ?>
 
             <div class="nav__menu " id="nav-menu">
@@ -90,38 +85,7 @@ if (!$queryResult) {
                 <div id="fileHolder">
 
                     <?php
-
-                    $sendersNames = array();
-                    while ($row = mysqli_fetch_row($queryResult)) {
-                        array_push($sendersNames, $row[1]);
-                    }
-
-
-                    $result = [];
-                    foreach (glob('../FileShare/*.*') as $file) {
-                        $result[] = [filemtime($file), basename($file)];
-                    }
-
-                    sort($result);
-
-                    for ($i = 0; $i < count($result); $i++) {
-                        $fileName = $result[$i][1];
-
-
-                        print("
-
-                        <a download='' href='../FileShare/" . $fileName . "' class='skills__header'>
-                            <i class='uil uil-file-share-alt skills__icon'></i>
-
-                            <div>
-                                <h1 class='skills__title'>" . $fileName . "</h1>
-                                <span class='skills__subtitle'> Uploaded By: " . ucwords($sendersNames[$i]) . "</span>
-                            </div>
-                        </a>
-
-                        ");
-                    }
-
+                    printOutFiles($queryResult);
                     ?>
 
 

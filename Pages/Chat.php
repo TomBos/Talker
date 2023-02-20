@@ -1,9 +1,7 @@
 <?php
 require '../dbOperations/IninitalizeDB.php';
 
-$curentDate = date_create()->format('Y-m-d H:i:s');
 
-$dataBaseName = '20ic01';
 $usersIdentification = $_SESSION['userID'];
 
 if ($usersIdentification == "") {
@@ -57,7 +55,7 @@ if (!$result) {
 
 
             <?php
-            print("<a href='#' class='nav__logo'>" . ucwords($_SESSION['userName']) . "</a>");
+            importNavName();
             ?>
 
             <div class="nav__menu " id="nav-menu">
@@ -91,27 +89,7 @@ if (!$result) {
 
             <div id="result" class="services__container container">
                 <?php
-                while ($row = mysqli_fetch_row($result)) {
-                    $messageFromSender   =  $row[0];
-                    $sendersName =  $row[1];
-                    $sendersId = $row[3];
-
-
-                    if ($usersIdentification == $sendersId) {
-                        $messageType = "Messages__self";
-                    } else {
-                        $messageType = "Messages__other";
-                    }
-
-
-                    print("
-                    <div class='$messageType'>
-                        <a class='button__special button--flex'>
-                            " . ucwords($sendersName) . ":  " . $messageFromSender . "
-                        </a>
-                    </div>
-                    ");
-                }
+                printOutMessages($result,$usersIdentification);
                 ?>
 
                 <script>

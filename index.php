@@ -6,7 +6,6 @@ $_SESSION['userID'] = "";
 require 'dbOperations/IninitalizeDB.php';
 
 
-$dataBaseName = '20ic01';
 
 if (isset($_POST['user'])) {
     $userSubmittedName = strtolower(trim($_POST['name']));

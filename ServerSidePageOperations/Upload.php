@@ -1,9 +1,7 @@
 <?php 
 require '../dbOperations/IninitalizeDB.php';
 
-$curentDate = date_create()->format('Y-m-d H:i:s');
 $usersIdentification = $_SESSION['userID'];
-$dataBaseName = '20ic01';
 
 if(isset($_FILES['file'])) {
     $maxsize  = 512000;
