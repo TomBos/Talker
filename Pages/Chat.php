@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
     $message = trim($_POST['message']);
 
 
-    $insertMessageQuery = "INSERT INTO `$dataBaseName`.`Messages` (`message`,`users_id`,`sended_at`) VALUE ('$message','$usersIdentification','$curentDate')";
+    $insertMessageQuery = "INSERT INTO `$dataBaseName`.`Messages` (`message`,`users_id`,`sended_at`) VALUE ('$message','$usersIdentification','$currentDate')";
     $result = mysqli_query($connection, $insertMessageQuery);
     if (!$result) {
 
