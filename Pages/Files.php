@@ -87,7 +87,7 @@ if (!file_exists('../FileShare')) {
 
                     sort($result);
                     
-                    for ($i = 2; $i < count($result); $i++) {
+                    for ($i = 0; $i < count($result); $i++) {
 
 
 

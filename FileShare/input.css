@@ -1,0 +1,11 @@
+.input_container {
+  border: 1px solid #e5e5e5;
+}
+
+input[type="file"]::file-selector-button {
+  display: none;
+}
+
+input[type="file"]::file-selector-button:hover {
+    display: none;
+}
