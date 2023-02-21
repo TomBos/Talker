@@ -11,13 +11,19 @@ if ($usersIdentification == "") {
 
 
 if (isset($_POST['submit'])) {
-    $message = trim($_POST['message']);
+    $message = trim(stripslashes($_POST['message']));
+    $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
+
+    if (strlen($message) >= 255) {
+        header("location: Chat.php");
+    }
+
+    $message = preg_replace_callback('/\S{16,}/', 'splitLongWords', $message);
 
 
     $insertMessageQuery = "INSERT INTO `$dataBaseName`.`Messages` (`message`,`users_id`,`sended_at`) VALUE ('$message','$usersIdentification','$currentDate')";
     $result = mysqli_query($connection, $insertMessageQuery);
     if (!$result) {
-
         consolelog("Failed To Insert Data Into Table Containing Messages!");
     } else {
         header("location: Chat.php");
@@ -89,7 +95,7 @@ if (!$result) {
 
             <div id="result" class="services__container container">
                 <?php
-                printOutMessages($result,$usersIdentification);
+                printOutMessages($result, $usersIdentification);
                 ?>
 
                 <script>

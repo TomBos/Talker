@@ -86,3 +86,14 @@ function printOutMessages($result,$usersIdentification){
         ");
     }
 }
+
+
+function splitLongWords($matches) {
+    $word = $matches[0];
+    if (strlen($word) > 15) {
+        $split_word = wordwrap($word, 15, " ", true);
+        return $split_word;
+    } else {
+        return $word;
+    }
+}
