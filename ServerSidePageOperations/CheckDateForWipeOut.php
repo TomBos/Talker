@@ -26,7 +26,7 @@ if ($fileDateTime != false) {
 $timeChecker = time();
 $timeDiffirence = $timeChecker - $dataBaseTime;
 
-if ($timeDiffirence >= 10) {
+if ($timeDiffirence >= 3 * 60 * 60) {
     $dropFilesTable = "DROP TABLE IF EXISTS `$dataBaseName`.`Files`";
     $dropMessagesTable = "DROP TABLE IF EXISTS `$dataBaseName`.`Messages`";
 
