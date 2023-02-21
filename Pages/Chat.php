@@ -95,6 +95,11 @@ if (!$result) {
             <div id="result" class="services__container container">
                 <?php
                 printOutMessages($result, $usersIdentification);
+
+
+
+
+
                 ?>
 
                 <script>
@@ -150,6 +155,8 @@ if (!$result) {
             not getting paid at all) </span>
     </section>
 </div>
+
+
 
 
 </body>

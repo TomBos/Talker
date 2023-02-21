@@ -1,41 +1,51 @@
 <?php
 require '../dbOperations/IninitalizeDB.php';
 
-$timeCheck = time() - 10800; 
-$getFileCreationTime = "SELECT MAX(file_creation_time) FROM `Files`";
-$getMessageTime = "SELECT MAX(sended_at) FROM `Messages`";
+$getFileCreationTime = "SELECT MIN(`sended_at`) FROM `$dataBaseName`.`Files`";
+$getMessageTime = "SELECT MIN(`sended_at`) FROM `$dataBaseName`.`Messages`";
 $fileDateTimeResult = mysqli_query($connection, $getFileCreationTime);
 $messageDateTimeResult = mysqli_query($connection, $getMessageTime);
-$fileDateTime = mysqli_fetch_array($fileDateTimeResult)[0];
-$messageDateTime = mysqli_fetch_array($messageDateTimeResult)[0];
+$fileDateTime = strtotime(mysqli_fetch_array($fileDateTimeResult)[0]);
+$messageDateTime = strtotime(mysqli_fetch_array($messageDateTimeResult)[0]);
 $dataBaseTime = false;
 
 if ($fileDateTime != false) {
-    if($messageDateTime != false){
-        if($messageDateTime < $fileDateTime){
+    if ($messageDateTime != false) {
+        if ($messageDateTime < $fileDateTime) {
             $dataBaseTime = $messageDateTime;
-        }
-        else{
+        } else {
             $dataBaseTime = $fileDateTime;
         }
+    } else {
+        $dataBaseTime = $fileDateTime;
     }
+} else {
+    $dataBaseTime = $messageDateTime;
 }
 
-if ($timeCheck >= $dataBaseTime) {
-    $dropTableMessages = "DROP TABLE `$dataBaseName`.`Messages`";
-    $dropTableFiles = "DROP TABLE `$dataBaseName`.`Files`";
+$timeChecker = time();
+$timeDiffirence = $timeChecker - $dataBaseTime;
 
-    $result = mysqli_query($connection, $dropTableMessages);
-    if (!$result) {
-        consolelog("Failed To Delete Messages!");
+if ($timeDiffirence >= 10) {
+    $dropFilesTable = "DROP TABLE IF EXISTS `$dataBaseName`.`Files`";
+    $dropMessagesTable = "DROP TABLE IF EXISTS `$dataBaseName`.`Messages`";
+
+    $result = mysqli_query($connection, $dropFilesTable);
+    $result = mysqli_query($connection, $dropMessagesTable);
+
+
+    $fileSharePath = "../FileShare";
+    $files = glob($fileSharePath . "/*");
+    foreach ($files as $file) {
+        if (is_file($file)) {
+            unlink($file);
+        } else if (is_dir($file)) {
+            deleteDirectory($file);
+        }
     }
+    rmdir($fileSharePath);
 
-    rmdir('../FileShare');
-
-    $result = mysqli_query($connection, $dropTableFiles);
-    if (!$result) {
-        consolelog("Failed To Delete Data Files!");
-    }
+    deleteDirectory($dir);
 }
 
 
