@@ -40,7 +40,6 @@ if (!$result) {
     consolelog("Failed To Get Data From Table Containing Messages!");
 }
 
-
 ?>
 
 <!DOCTYPE html>
