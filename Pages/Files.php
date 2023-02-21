@@ -145,8 +145,16 @@ if (!$queryResult) {
     </section>
 </div>
 
-
-
-</body>
+<script>
+    setInterval(function() {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', '../ServerSidePageOperations/CheckDateForWipeOut.php', true);
+        xhr.onload = function() {
+            if (this.status == 200) {
+            }
+        };
+        xhr.send();
+    }, 5000);
+</script>
 
 </html>
