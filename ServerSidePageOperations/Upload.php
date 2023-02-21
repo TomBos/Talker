@@ -15,12 +15,12 @@ if(isset($_FILES['file'])) {
         $result = mysqli_query($connection, $insertFilesQuery);
         header("Location: ../Pages/Files.php#FileBox");
     }
-
     else{
         header("Location: ../Pages/Files.php#FileBox");
     }
 }
 
+header("Location: ../Pages/Files.php#FileBox");
 
 
 
