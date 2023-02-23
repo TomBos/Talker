@@ -1,7 +1,7 @@
 <?php
 require '../dbOperations/IninitalizeDB.php';
 
-
+/* ===================================== WITHOUT USERS TOKENS =========================================================== 
 if (isset($_POST['submit'])) {
     $userName = strtolower(trim($_POST['name']));
     $userPassword = strtolower(trim($_POST['password']));
@@ -20,6 +20,34 @@ if (isset($_POST['submit'])) {
         }
     }
 }
+===================================== WITHOUT USERS TOKENS =========================================================== */
+
+/* ===================================== WITHOUT USERS =========================================================== */
+if (isset($_POST['submit'])) {
+    $userName = strtolower(trim($_POST['name']));
+    $userPassword = strtolower(trim($_POST['password']));
+    $userVerificationPassword = strtolower(trim($_POST['retyped_password']));
+    $userToken = strtolower(trim($_POST['token']));
+
+    $selectTokenTable = "SELECT * FROM `$dataBaseName`.`TokenTable`";
+    $result = mysqli_query($connection, $selectTokenTable);
+    while ($row = mysqli_fetch_row($result)) {
+        $id  = $row[0];
+        $databaseUsername =  $row[1];
+        $databaseToken =  $row[2];
+
+        if($databaseUsername == $userName && $userPassword == $userVerificationPassword && $userToken == $databaseToken){
+            $insertUser = "INSERT INTO `$dataBaseName`.`Users` (`username`,`password`)VALUES ('$userName','" . crypt($userPassword,"salt") . "')";
+            mysqli_query($connection, $insertUser);
+
+            $removeUserToken = "DELETE FROM `$dataBaseName`.`TokenTable` WHERE `id`='$id'";
+            if(mysqli_query($connection, $removeUserToken)){
+                header("location: ../index.php");
+            }
+        }
+    }
+}
+/* ===================================== WITHOUT USERS TOKENS =========================================================== */
 
 
 ?>
@@ -54,6 +82,15 @@ if (isset($_POST['submit'])) {
                             <label for="" class="contact__label"> User Name </label>
                             <input type="text" minlength="3" required name="name" class="contact__input">
                         </div>
+
+
+                       <!--  Comment this if you want to disable user tokens      -->
+                        <div class="contact__content">
+                            <label for="" class="contact__label"> Token </label>
+                            <input type="text"  required name="token" class="contact__input">
+                        </div>
+                        <!--  Comment this if you want to disable user tokens      -->
+
 
                         <div class="contact__content">
                             <label for="" class="contact__label"> Password </label>

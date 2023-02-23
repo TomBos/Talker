@@ -22,7 +22,6 @@ function consolelog($data)
     }
 
     echo "<script>console.log('$output');</script>";
-    echo "<script>console.log(' ');</script>";
 }
 
 function importNavName(){
