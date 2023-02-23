@@ -1,11 +1,6 @@
 <?php
 require '../dbOperations/IninitalizeDB.php';
 
-
-
-
-$dataBaseName = '20ic01';
-
 $getFiles = "SELECT `F`.`files`, `U`.`username`, `F`.`sended_at`,`U`.`id` 
     FROM `$dataBaseName`.`Files` AS F
     INNER JOIN `$dataBaseName`.`Users` As U 
@@ -53,3 +48,7 @@ for ($i = 0; $i < count($result); $i++) {
 
         ");
 }
+
+
+
+?>

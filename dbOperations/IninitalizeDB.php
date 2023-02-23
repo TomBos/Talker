@@ -1,11 +1,5 @@
 <?php
-require 'Connect.php';
-
-
-$createDB = "CREATE DATABASE IF NOT EXISTS `$dataBaseName`";
-if(!mysqli_query($connection, $createDB)){
-    consolelog("Failed To Create DB!");
-}
+require 'ServerScripts.php';
 
 $connection = mysqli_connect('localhost', 'root', 'password',$dataBaseName);
 
@@ -14,10 +8,16 @@ if ($connection) {
 }
 
 
+$createDB = "CREATE DATABASE IF NOT EXISTS `$dataBaseName`";
+if(!mysqli_query($connection, $createDB)){
+    consolelog("Failed To Create DB!");
+}
+
+
 $createUsers = "CREATE TABLE IF NOT EXISTS `$dataBaseName`.`Users`( 
     `id` int(3) NOT NULL auto_increment,   
     `username`  varchar(20) NOT NULL,  
-    `password` varchar(15) NOT NULL,
+    `password` varchar(60) NOT NULL,
     PRIMARY KEY  (`id`)
 )";
 if(!mysqli_query($connection, $createUsers)){

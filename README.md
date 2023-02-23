@@ -1,10 +1,10 @@
 # Talker Chat Application
 
-Talker is a chat application built using PHP, MySQL, and JavaScript. Users can create accounts and then chat with other users in real-time.
+Talker is a chat application built using PHP, MySQL, and JavaScript. Users can create accounts and then chat with other users in real time.
 
 ## Features
 
-- Create new account
+- Create a new account
 - Log in and log out
 - Chat with other users
 - View chat history
@@ -27,8 +27,8 @@ Talker is a chat application built using PHP, MySQL, and JavaScript. Users can c
 ## Usage
 
 1. Create a new account by entering a username and password on the registration page.
-2. Log in using your newly created account.
-3. Chat with other users in real-time on the chat page.
+2. Login using your newly created account.
+3. Chat with other users in real time on the chat page.
 4. View chat history by scrolling up in the chat window.
 
 ## Contributing
@@ -43,3 +43,28 @@ If you would like to contribute to the Talker project, please follow these steps
 
 All files and database data (except user data) are automatically deleted every 3 hours. The code in `ServerSideOperations/autoDelete.php` controls this feature
 Make changes to the time value to delete data sooner or later
+
+## Project Directory
+
+.
+├── CSS
+│   ├── input.css
+│   └── styles.css
+├── dbOperations
+│   ├── IninitalizeDB.php
+│   └── ServerScripts.php
+├── FileShare `(This folder is being deleted every 3hours, don't save important files here!)`
+│   └── Test.MD
+├── index.php
+├── JavaScript
+│   └── Main.js
+├── Pages
+│   ├── Chat.php
+│   ├── Files.php
+│   └── UserAuth.php
+├── README.md
+└── ServerSidePageOperations
+    ├── CheckDateForWipeOut.php
+    ├── ReloadChat.php
+    ├── ReloadFiles.php
+    └── Upload.php

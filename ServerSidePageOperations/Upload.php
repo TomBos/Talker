@@ -24,3 +24,4 @@ header("Location: ../Pages/Files.php#FileBox");
 
 
 
+?>

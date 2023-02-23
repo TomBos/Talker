@@ -49,8 +49,12 @@ if (!$result) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+
+    <script type="text/javascript" src="../JavaScript/Main.js"></script>
+
     <title>Talker - Chat</title>
 </head>
 
@@ -95,24 +99,10 @@ if (!$result) {
             <div id="result" class="services__container container">
                 <?php
                 printOutMessages($result, $usersIdentification);
-
-
-
-
-
                 ?>
 
                 <script>
-                    setInterval(function() {
-                        let xhr = new XMLHttpRequest();
-                        xhr.open('GET', '../ServerSidePageOperations/ReloadChat.php', true);
-                        xhr.onload = function() {
-                            if (this.status == 200) {
-                                document.getElementById('result').innerHTML = this.responseText;
-                            }
-                        };
-                        xhr.send();
-                    }, 2000);
+                    RefreshChat();
                 </script>
 
             </div>
@@ -158,15 +148,7 @@ if (!$result) {
 
 
 <script>
-    setInterval(function() {
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', '../ServerSidePageOperations/CheckDateForWipeOut.php', true);
-        xhr.onload = function() {
-            if (this.status == 200) {
-            }
-        };
-        xhr.send();
-    }, 5000);
+    CheckDateForWipeOut();
 </script>
 
 

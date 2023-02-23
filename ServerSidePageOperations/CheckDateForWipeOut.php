@@ -26,6 +26,8 @@ if ($fileDateTime != false) {
 $timeChecker = time();
 $timeDiffirence = $timeChecker - $dataBaseTime;
 
+consolelog($timeDiffirence);
+
 if ($timeDiffirence >= 3 * 60 * 60) {
     $dropFilesTable = "DROP TABLE IF EXISTS `$dataBaseName`.`Files`";
     $dropMessagesTable = "DROP TABLE IF EXISTS `$dataBaseName`.`Messages`";
@@ -44,8 +46,6 @@ if ($timeDiffirence >= 3 * 60 * 60) {
         }
     }
     rmdir($fileSharePath);
-
-    deleteDirectory($dir);
 }
 
 

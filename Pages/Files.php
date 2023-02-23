@@ -12,8 +12,8 @@ if ($usersIdentification == "") {
 
 
 $getFiles = "SELECT `F`.`files`, `U`.`username`, `F`.`sended_at`,`U`.`id` 
-FROM `20ic01`.`Files` AS F
-    INNER JOIN `20ic01`.`Users` As U 
+FROM `$dataBaseName`.`Files` AS F
+    INNER JOIN `$dataBaseName`.`Users` As U 
     ON `F`.`users_id` = `U`.`id`
 ORDER BY `F`.`sended_at`";
 
@@ -38,9 +38,12 @@ if (!$queryResult) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="../input.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/input.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <script type="text/javascript" src="../JavaScript/Main.js"></script>
+
     <title>Talker - Files</title>
 </head>
 
@@ -90,16 +93,7 @@ if (!$queryResult) {
 
 
                     <script>
-                        setInterval(function() {
-                            let xhr = new XMLHttpRequest();
-                            xhr.open('GET', '../ServerSidePageOperations/ReloadFiles.php', true);
-                            xhr.onload = function() {
-                                if (this.status == 200) {
-                                    document.getElementById('fileHolder').innerHTML = this.responseText;
-                                }
-                            };
-                            xhr.send();
-                        }, 2000);
+                        RefreshFiles();
                     </script>
 
                 </div>
@@ -146,15 +140,7 @@ if (!$queryResult) {
 </div>
 
 <script>
-    setInterval(function() {
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', '../ServerSidePageOperations/CheckDateForWipeOut.php', true);
-        xhr.onload = function() {
-            if (this.status == 200) {
-            }
-        };
-        xhr.send();
-    }, 5000);
+    CheckDateForWipeOut();
 </script>
 
 </html>

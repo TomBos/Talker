@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
     $userPassword = strtolower(trim($_POST['password']));
     $userVerificationPassword = strtolower(trim($_POST['retyped_password']));
 
-    $insertIntoUsersQuery = "INSERT INTO `$dataBaseName`.`Users` (`username`,`password`)VALUES ('$userName','" . sha1($userPassword) . "')";
+    $insertIntoUsersQuery = "INSERT INTO `$dataBaseName`.`Users` (`username`,`password`)VALUES ('$userName','" . crypt($userPassword,"salt") . "')";
 
     if ($userPassword != $userVerificationPassword) {
         consolelog("Wrong Password");
@@ -32,8 +32,11 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <script type="text/javascript" src="../JavaScript/Main.js"></script>
+
     <title>Talker - New Account</title>
 </head>
 
@@ -84,14 +87,7 @@ if (isset($_POST['submit'])) {
 </div>
 
 <script>
-    setInterval(function() {
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', '../ServerSidePageOperations/CheckDateForWipeOut.php', true);
-        xhr.onload = function() {
-            if (this.status == 200) {}
-        };
-        xhr.send();
-    }, 5000);
+    CheckDateForWipeOut();
 </script>
 
 
