@@ -43,28 +43,3 @@ If you would like to contribute to the Talker project, please follow these steps
 
 All files and database data (except user data) are automatically deleted every 3 hours. The code in `ServerSideOperations/autoDelete.php` controls this feature
 Make changes to the time value to delete data sooner or later
-
-## Project Directory
-
-.
-├── CSS
-│   ├── input.css
-│   └── styles.css
-├── dbOperations
-│   ├── IninitalizeDB.php
-│   └── ServerScripts.php
-├── FileShare `(This folder is being deleted every 3hours, don't save important files here!)`
-│   └── Test.MD
-├── index.php
-├── JavaScript
-│   └── Main.js
-├── Pages
-│   ├── Chat.php
-│   ├── Files.php
-│   └── UserAuth.php
-├── README.md
-└── ServerSidePageOperations
-    ├── CheckDateForWipeOut.php
-    ├── ReloadChat.php
-    ├── ReloadFiles.php
-    └── Upload.php
