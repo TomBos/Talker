@@ -44,4 +44,4 @@ If you would like to contribute to the Talker project, please follow these steps
 
 ## Automatic Deletion
 
-Talker includes a feature that automatically deletes all files and database data (except user data) every 3 hours to protect users' privacy. The code in ServerSideOperations/autoDelete.php controls this feature. To change the time interval, update the $deleteInterval variable in the autoDelete.php file.
+Talker includes a feature that automatically deletes all files and database data (except user data) every 3 hours to protect users' privacy. The code in `ServerSideOperations/CheckDateForWipeOut.php` controls this feature. To change the time interval, update the equation in the `CheckDateForWipeOut.php` file.
