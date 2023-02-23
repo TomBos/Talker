@@ -10,7 +10,7 @@ Talker is a chat application built using PHP, MySQL, and JavaScript. Users can c
 - View chat history
 - Real-time chat updating
 - Protected against SQL injection
-- Automatic deletion of all files and database data (except user data) every 3 hours
+- Automatic deletion of all files and database data (except user account information) every 3 hours
 
 ## Requirements
 
@@ -20,9 +20,12 @@ Talker is a chat application built using PHP, MySQL, and JavaScript. Users can c
 
 ## Installation
 
+To use Talker, you will need:
+
 1. Clone this repository to your web server using git clone.
 2. Update the `$databaseName` variable in the PHP files to match your MySQL database settings.
 3. Ensure that you have established a connection with MySQL. Once you have done so, check the console in `index.php` to verify whether the database initialization was successful.
+4. decide if you want to use tokens, if you choose to create tokens generate them if not comment on parts of code in `dbOperations/CreateTokens.php` and `Pages/UserAuth.php`
 
 ## Usage
 
@@ -41,5 +44,4 @@ If you would like to contribute to the Talker project, please follow these steps
 
 ## Automatic Deletion
 
-All files and database data (except user data) are automatically deleted every 3 hours. The code in `ServerSideOperations/autoDelete.php` controls this feature
-Make changes to the time value to delete data sooner or later
+Talker includes a feature that automatically deletes all files and database data (except user data) every 3 hours to protect users' privacy. The code in ServerSideOperations/autoDelete.php controls this feature. To change the time interval, update the $deleteInterval variable in the autoDelete.php file.

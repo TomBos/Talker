@@ -36,5 +36,4 @@ $getMessages = "SELECT `M`.`message`, `U`.`username`, `M`.`sended_at`,`U`.`id` F
             </div>
         ");
     }
-
 ?>

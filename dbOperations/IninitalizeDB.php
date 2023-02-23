@@ -59,14 +59,4 @@ $createTokens = "CREATE TABLE IF NOT EXISTS `$dataBaseName`.`TokenTable` (
 if(!mysqli_query($connection, $createTokens)){
     consolelog("Failed To Create Table Containing Messages!");
 }
-
-
-
-
-
-
-
-
-
-
 ?>

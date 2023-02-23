@@ -7,10 +7,6 @@ if ($usersIdentification == "") {
     header("location: ../index.php");
 }
 
-
-
-
-
 $getFiles = "SELECT `F`.`files`, `U`.`username`, `F`.`sended_at`,`U`.`id` 
 FROM `$dataBaseName`.`Files` AS F
     INNER JOIN `$dataBaseName`.`Users` As U 
@@ -23,9 +19,6 @@ $queryResult = mysqli_query($connection, $getFiles);
 if (!$queryResult) {
     consolelog("Failed To Get Data From Table Containing Files!");
 }
-
-
-
 
 
 ?>
@@ -98,14 +91,6 @@ if (!$queryResult) {
 
                 </div>
             </div>
-
-
-
-
-
-
-
-
         </section>
 
 

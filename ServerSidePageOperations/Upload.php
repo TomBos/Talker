@@ -19,9 +19,5 @@ if(isset($_FILES['file'])) {
         header("Location: ../Pages/Files.php#FileBox");
     }
 }
-
 header("Location: ../Pages/Files.php#FileBox");
-
-
-
 ?>

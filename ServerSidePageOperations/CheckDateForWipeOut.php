@@ -49,7 +49,4 @@ if ($timeDiffirence >= 3 * 60 * 60) {
 }
 
 
-
-
-
 ?>

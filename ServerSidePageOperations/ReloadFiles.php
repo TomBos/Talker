@@ -7,17 +7,10 @@ $getFiles = "SELECT `F`.`files`, `U`.`username`, `F`.`sended_at`,`U`.`id`
     ON `F`.`users_id` = `U`.`id`
 ORDER BY `F`.`sended_at`";
 
-
-
 $queryResult = mysqli_query($connection, $getFiles);
 if (!$queryResult) {
     consolelog("Failed To Get Data From Table Containing Files!");
 }
-
-
-
-
-
 
 $sendersNames = array();
 while ($row = mysqli_fetch_row($queryResult)) {
@@ -46,9 +39,6 @@ for ($i = 0; $i < count($result); $i++) {
             </div>
         </a>
 
-        ");
+    ");
 }
-
-
-
 ?>

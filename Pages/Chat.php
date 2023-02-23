@@ -9,7 +9,6 @@ if ($usersIdentification == "") {
 }
 
 
-
 if (isset($_POST['submit'])) {
     $message = trim(stripslashes($_POST['message']));
     $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
@@ -106,14 +105,6 @@ if (!$result) {
                 </script>
 
             </div>
-
-
-
-
-
-
-
-
         </section>
 
 
