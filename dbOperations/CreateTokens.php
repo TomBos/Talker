@@ -15,7 +15,8 @@ $userNameArray = [/*  PLACE YOUR NAMES HERE   */];
 $userNameArrayLenght = count($userNameArray);
 for ($i = 0; $i < $userNameArrayLenght; $i++){
     $token = rand(100000,9999999);
-    $insertToken = "INSERT INTO `$dataBaseName`.`TokenTable` (`UserName`,`Token`) VALUES ('" . $userNameArray[$i]  ."','". $token . "')";
+    $validatedName = trim($userNameArray[$i]);
+    $insertToken = "INSERT INTO `$dataBaseName`.`TokenTable` (`UserName`,`Token`) VALUES ('" . $validatedName  ."','". $token . "')";
     if(mysqli_query($connection, $insertToken)){
         $x++;
     }
