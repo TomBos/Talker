@@ -78,7 +78,7 @@ if (isset($_POST['submit'])) {
                     <div class="contact__inputs grid">
                         <div class="contact__content">
                             <label for="" class="contact__label"> User Name </label>
-                            <input type="text" minlength="3" required name="name" class="contact__input">
+                            <input type="text" maxlength="10" minlength="3" required name="name" class="contact__input">
                         </div>
 
 
@@ -92,12 +92,12 @@ if (isset($_POST['submit'])) {
 
                         <div class="contact__content">
                             <label for="" class="contact__label"> Password </label>
-                            <input type="password" minlength="4" required name="password" class="contact__input">
+                            <input type="password" maxlength="15" minlength="4" required name="password" class="contact__input">
                         </div>
 
                         <div class="contact__content">
                             <label for="" class="contact__label"> Confirm Password </label>
-                            <input type="password" minlength="4" required name="retyped_password" class="contact__input">
+                            <input type="password" maxlength="15" minlength="4" required name="retyped_password" class="contact__input">
                         </div>
                     </div>
 
