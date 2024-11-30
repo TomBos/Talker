@@ -10,7 +10,7 @@ require $_SERVER['DOCUMENT_ROOT'] . $controller_dir . '/PDO.php';
 
 $Tools = new Tools();
 $db = new Database($credentials);
-$pdo = $db->connect();
+$pdo = $db->connectToDatabase();
 
 if ($pdo) {
     echo "Connected successfully!";

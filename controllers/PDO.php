@@ -37,12 +37,53 @@ class Database {
             $this->pdo = new PDO($dsn, $this->username, $this->password);
 
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected successfully!";
             return $this->pdo;
         } catch (PDOException $e) {
             return null;
         }
     }
+
+    public function createTable($tableName, $attributes){
+        $attributeRow = "";
+        $attributesLength = count($attributes);
+
+        for ($i = 0; $i < $attributesLength; $i++) {
+            $attributeRow .= $i != $attributesLength - 1 ? $attributes[$i] . ", " : $attributes[$i];
+        }
+
+        $pdo = $this->connectToDatabase();
+        $pdo->exec("CREATE TABLE IF NOT EXISTS `$this->dbname`.`$tableName` ($attributeRow)");
+        echo "Table $tableName created successfully!";
+        echo "<br>";
+    }
+
+    public function defineAttribute($attributeName, $dataType, $dataLimit = '', $isNull = false, $autoIncrement = false)
+    {
+        $nullStatus = $isNull ? 'NULL' : 'NOT NULL';
+        $autoInc = $autoIncrement ? 'AUTO_INCREMENT' : '';
+
+        $validAttributeName = trim($attributeName) ? $attributeName : null;
+        $validDataType = trim($dataType) ? $dataType : null;
+
+        if ($validDataType == 'DATETIME' && $validAttributeName && $validDataType) {
+            return "`$validAttributeName` $validDataType $nullStatus $autoInc";
+        }
+
+        $validDataLimit = ($dataLimit != 0) ? $dataLimit : null;
+
+        if ($validAttributeName && $validDataType && $validDataLimit) {
+            return "`$validAttributeName` $validDataType($validDataLimit) $nullStatus $autoInc";
+        }
+
+        return null;
+    }
+
+    public function definePrimaryKey($attributeName)
+    {
+        $validPrimaryKey = trim($attributeName) ? $attributeName : null;
+        return "PRIMARY KEY  (`" . $validPrimaryKey . "`)";
+    }
+
 }
 
 ?>
