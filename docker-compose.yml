@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: talker
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - talker_network
+
+  db:
+    image: mysql:5.7
+    container_name: talker_db
+    restart: always
+    environment:
+      DB_SERVER: talker_db
+      DB_USER: root
+      DB_PASSWORD: 12345678
+    ports:
+          - "3006:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - talker_network
+
+volumes:
+  db_data:
+
+networks:
+  talker_network:
+    driver: bridge
