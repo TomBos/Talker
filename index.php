@@ -1,9 +1,12 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $_SESSION['userName'] = "";
 $_SESSION['userID'] = "";
 
-require 'dbOperations/IninitalizeDB.php';
+// require 'dbOperations/IninitalizeDB.php';
 
 
 

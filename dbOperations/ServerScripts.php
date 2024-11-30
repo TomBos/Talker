@@ -2,13 +2,13 @@
 session_start();
 
 $currentDate = date_create()->format('Y-m-d H:i:s');
-$dataBaseName = '20ic01';
+$dataBaseName = 'ok';
 
-
+/*
 if (!file_exists('../FileShare')) {
     mkdir('../FileShare', 0777, true);
 }
-
+*/
 function println(string $string = '')
 {
     print($string . PHP_EOL);
@@ -24,6 +24,7 @@ function consolelog($data)
     echo "<script>console.log('$output');</script>";
 }
 
+/*
 function importNavName(){
     print("<a href='#' class='nav__logo'>" . ucwords($_SESSION['userName']) . "</a>");
 }
@@ -119,5 +120,6 @@ function deleteDirectory($dir)
 
     return rmdir($dir);
 }
+*/
 
 ?>

@@ -5,7 +5,8 @@ FROM php:8.3-apache
 RUN a2enmod rewrite
 
 # Install PHP extensions required for MySQL
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN apt update && apt upgrade -y
+RUN apt-get install -y default-mysql-client
 
 # Expose port 80 to be accessible from outside the container
 EXPOSE 80

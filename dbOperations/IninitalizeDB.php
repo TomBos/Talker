@@ -6,7 +6,7 @@ if ($connection) {
     consolelog("Connected To DataBase Server!");
 }
 
-
+/*
 $createDB = "CREATE DATABASE IF NOT EXISTS `$dataBaseName`";
 if(!mysqli_query($connection, $createDB)){
     consolelog("Failed To Create DB!");
@@ -59,4 +59,5 @@ $createTokens = "CREATE TABLE IF NOT EXISTS `$dataBaseName`.`TokenTable` (
 if(!mysqli_query($connection, $createTokens)){
     consolelog("Failed To Create Table Containing Messages!");
 }
+*/
 ?>
