@@ -4,7 +4,7 @@ class Dispatcher {
 
     private $pageName;
 
-    public function __construct($fileName) {
+    public function __construct($fileName = null) {
         $this->pageName = $fileName;
     }
 
@@ -16,6 +16,27 @@ class Dispatcher {
         } else {
             include_once $_SERVER['DOCUMENT_ROOT'] . '/themes/templates/pages/' . '404.php';;
         }
+    }
+
+    public function getFullControllerPath($controllerName) {
+         $controllerPath = $_SERVER['DOCUMENT_ROOT'] . '/controllers/' . $controllerName . '.php';
+
+         if (file_exists($controllerPath)) {
+            return $controllerPath;
+         }
+
+        return null;
+    }
+
+
+    public function getRelativeControllerPath($controllerName) {
+        $controllerFileLocation = $_SERVER['DOCUMENT_ROOT'] . '/controllers/' . $controllerName. '.php';
+
+        if (file_exists($controllerFileLocation)) {
+            return '/controllers/' . $controllerName . '.php';
+        }
+
+        return null;
     }
 }
 

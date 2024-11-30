@@ -1,5 +1,5 @@
 <?php
-require '../dbOperations/IninitalizeDB.php';
+require '../dbOperations - OLD/IninitalizeDB.php';
 
 $getFiles = "SELECT `F`.`files`, `U`.`username`, `F`.`sended_at`,`U`.`id` 
     FROM `$dataBaseName`.`Files` AS F

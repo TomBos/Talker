@@ -1,13 +1,14 @@
 <?php
 // Define the base directory for your CSS files
-$parameters = require_once $_SERVER['DOCUMENT_ROOT'] . '/app/config/appParameters.php';
+$parameters = require $_SERVER['DOCUMENT_ROOT'] . '/app/config/appParameters.php';
 
 $css_dir = $parameters['css_dir'];
 $js_dir = $parameters['js_dir'];
 $icon_cdn = $parameters['icon_cdn'];
+$controller_dir = $parameters['controller_dir'];
 
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/Dispatcher.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . $controller_dir . '/Dispatcher.php';
 $Dispatcher = new Dispatcher("login");
 ?>
 
@@ -29,7 +30,7 @@ $Dispatcher = new Dispatcher("login");
     <title>Talker</title>
 </head>
 <body>
-<!-- include content of desired page -->
-<?php $Dispatcher->displayFile(); ?>
+    <!-- include content of desired page -->
+    <?php $Dispatcher->displayFile(); ?>
 </body>
 </html>

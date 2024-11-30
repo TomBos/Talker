@@ -1,47 +1,10 @@
-<!--
-<script>
-    CheckDateForWipeOut();
-</script>
+<?php
+$parameters = require $_SERVER['DOCUMENT_ROOT'] . '/app/config/appParameters.php';
+$controller_dir = $parameters['controller_dir'];
 
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-$_SESSION['userName'] = "";
-$_SESSION['userID'] = "";
-
-// require 'dbOperations/IninitalizeDB.php';
-
-
-
-if (isset($_POST['user'])) {
-    $userSubmittedName = strtolower(trim($_POST['name']));
-    $verifyPassword = strtolower(trim($_POST['password']));
-    $verifyPassword = crypt($verifyPassword, "salt");
-
-
-    $selectUserQuery = "SELECT `id`,`username`,`password` FROM `$dataBaseName`.`Users`";
-    $result = mysqli_query($connection, $selectUserQuery);
-    if (!$result) {
-        consolelog("Failed To Get Data From Users Table!");
-    }
-    while ($row = mysqli_fetch_row($result)) {
-        $databaseUserId = $row[0];
-        $databaseUsername =  $row[1];
-        $databasePassword =  $row[2];
-
-        if ($databaseUsername != $userSubmittedName || $verifyPassword != $databasePassword) {
-            consolelog("Wrong Password Or Username!");
-        } else {
-            $_SESSION['userName'] = $databaseUsername;
-            $_SESSION['userID'] = $databaseUserId;
-            header("location: Pages/Chat.php");
-        }
-    }
-}
-
--->
+require_once $_SERVER['DOCUMENT_ROOT'] . $controller_dir . '/Dispatcher.php';
+$Dispatcher = new Dispatcher();
+?>
 
 <div class="too-small">
     <main class="main">
@@ -49,15 +12,15 @@ if (isset($_POST['user'])) {
             <h2 class="section__title">User Login</h2>
             <span class="span section__subtitle">log in to continue to the website</span>
             <div class="contact__container container grid">
-                <form id="form" action="controllers/NewUser.php" method="POST" class="contact__form grid">
+                <form id="form" action="<?php echo $Dispatcher->getRelativeControllerPath("NewUser") ?>" method="POST" class="contact__form grid">
                     <div class="contact__inputs grid">
                         <div class="contact__content">
-                            <label for="" class="contact__label"> User Name </label>
-                            <input type="text" name="name" class="contact__input">
+                            <label for="name" class="contact__label"> User Name </label>
+                            <input id="name" type="text" name="name" class="contact__input">
                         </div>
                         <div class="contact__content">
-                            <label for="" class="contact__label"> Password </label>
-                            <input type="password" name="password" class="contact__input">
+                            <label for="password" class="contact__label"> Password </label>
+                            <input id="password" type="password" name="password" class="contact__input">
                         </div>
                     </div>
                     <div class="button__group">

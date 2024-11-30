@@ -1,5 +1,5 @@
 <?php
-require '../dbOperations/IninitalizeDB.php';
+require '../dbOperations - OLD/IninitalizeDB.php';
 
 $getFileCreationTime = "SELECT MIN(`sended_at`) FROM `$dataBaseName`.`Files`";
 $getMessageTime = "SELECT MIN(`sended_at`) FROM `$dataBaseName`.`Messages`";

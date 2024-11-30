@@ -1,5 +1,5 @@
 <?php
-require '../dbOperations/IninitalizeDB.php';
+require '../dbOperations - OLD/IninitalizeDB.php';
 
 $usersIdentification = $_SESSION['userID'];
 
@@ -96,7 +96,7 @@ if (!$queryResult) {
 
         <section class="move-down">
             <div class="contact__container container grid">
-                <form id="form" action="../ServerSidePageOperations/Upload.php" enctype="multipart/form-data" method="POST" class="contact__form grid">
+                <form id="form" action="../ServerSidePageOperations%20-%20OLD/Upload.php" enctype="multipart/form-data" method="POST" class="contact__form grid">
 
                     <label for="fileInput" class="contact__content">
                         <label class="contact__label"> Click Me To Upload Files <i class="uil uil-file-plus-alt"></i>
