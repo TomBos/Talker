@@ -43,19 +43,13 @@ if (isset($_POST['user'])) {
 
 -->
 
-<?php
-
-require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/Navigator.php';
-$Navigator = new Navigator();
-?>
-
 <div class="too-small">
     <main class="main">
         <section class="contact section" id="contact">
             <h2 class="section__title">User Login</h2>
             <span class="span section__subtitle">log in to continue to the website</span>
             <div class="contact__container container grid">
-                <form id="form" action="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/controllers/NewUser.php'; ?>" method="POST" class="contact__form grid">
+                <form id="form" action="controllers/NewUser.php" method="POST" class="contact__form grid">
                     <div class="contact__inputs grid">
                         <div class="contact__content">
                             <label for="" class="contact__label"> User Name </label>
