@@ -8,7 +8,7 @@ class Dispatcher {
         $this->pageName = $fileName;
     }
 
-    public function displayFile() {
+    public function displayPage() {
         $filePath = $_SERVER['DOCUMENT_ROOT'] . '/themes/templates/pages/' . $this->pageName . '.php';
 
         if (file_exists($filePath)) {

@@ -31,6 +31,6 @@ $router = new Dispatcher("login");
 </head>
 <body>
     <!-- include content of desired page -->
-    <?php $router->displayFile(); ?>
+    <?php $router->displayPage(); ?>
 </body>
 </html>
