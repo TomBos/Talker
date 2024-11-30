@@ -2,8 +2,7 @@
 $parameters = require $_SERVER['DOCUMENT_ROOT'] . '/app/config/appParameters.php';
 $controller_dir = $parameters['controller_dir'];
 
-require_once $_SERVER['DOCUMENT_ROOT'] . $controller_dir . '/Dispatcher.php';
-$Dispatcher = new Dispatcher();
+$router = new Dispatcher();
 ?>
 
 <div class="too-small">
@@ -12,7 +11,7 @@ $Dispatcher = new Dispatcher();
             <h2 class="section__title">User Login</h2>
             <span class="span section__subtitle">log in to continue to the website</span>
             <div class="contact__container container grid">
-                <form id="form" action="<?php echo $Dispatcher->getRelativeControllerPath("NewUser") ?>" method="POST" class="contact__form grid">
+                <form id="form" action="<?php echo $router->getRelativeControllerPath("NewUser") ?>" method="POST" class="contact__form grid">
                     <div class="contact__inputs grid">
                         <div class="contact__content">
                             <label for="name" class="contact__label"> User Name </label>

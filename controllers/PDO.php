@@ -1,20 +1,35 @@
 <?php
-$host = '127.0.0.1'; // The IP address of the MySQL server
-$port = '3006'; // The port your MySQL service is running on (from Docker)
-$db = 'talker'; // The database name
-$username = 'root'; // MySQL username
-$password = '12345678'; // MySQL password
 
-try {
-    // Create a new PDO instance with the port included
-    $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8";
-    $pdo = new PDO($dsn, $username, $password);
+class Database {
+    private $pdo;
+    private $host;
+    private $port;
+    private $dbname;
+    private $username;
+    private $password;
 
-    // Set the PDO error mode to exception
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    public function __construct($configFile) {
+        $credentials = require $configFile;
 
-    echo "Connected successfully!";
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
+        $this->host = $credentials['host'];
+        $this->port = $credentials['port'];
+        $this->dbname = $credentials['db'];
+        $this->username = $credentials['username'];
+        $this->password = $credentials['password'];
+    }
+
+    public function connect() {
+        try {
+            $dsn = "mysql:host=$this->host;port=$this->port;dbname=$this->dbname;charset=utf8";
+            $this->pdo = new PDO($dsn, $this->username, $this->password);
+
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            return $this->pdo;
+        } catch (PDOException $e) {
+            return null;
+        }
+    }
 }
+
 ?>

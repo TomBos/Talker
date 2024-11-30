@@ -8,8 +8,8 @@ $icon_cdn = $parameters['icon_cdn'];
 $controller_dir = $parameters['controller_dir'];
 
 
-require_once $_SERVER['DOCUMENT_ROOT'] . $controller_dir . '/Dispatcher.php';
-$Dispatcher = new Dispatcher("login");
+require $_SERVER['DOCUMENT_ROOT'] . $controller_dir . '/Dispatcher.php';
+$router = new Dispatcher("login");
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +31,6 @@ $Dispatcher = new Dispatcher("login");
 </head>
 <body>
     <!-- include content of desired page -->
-    <?php $Dispatcher->displayFile(); ?>
+    <?php $router->displayFile(); ?>
 </body>
 </html>

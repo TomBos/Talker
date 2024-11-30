@@ -1,10 +1,21 @@
 <?php
 $parameters = require $_SERVER['DOCUMENT_ROOT'] . '/app/config/appParameters.php';
+$credentials = $_SERVER['DOCUMENT_ROOT'] . '/app/config/credentials.php';
+
 $controller_dir = $parameters['controller_dir'];
 
+require $_SERVER['DOCUMENT_ROOT'] . $controller_dir . '/Tools.php';
+require $_SERVER['DOCUMENT_ROOT'] . $controller_dir . '/PDO.php';
 
-require_once $_SERVER['DOCUMENT_ROOT'] . $controller_dir . '/Tools.php';
+
 $Tools = new Tools();
+$db = new Database($credentials);
+$pdo = $db->connect();
+
+if ($pdo) {
+    echo "Connected successfully!";
+}
+
 
 $Tools->Redirect('/');
 
