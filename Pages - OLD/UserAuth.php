@@ -51,67 +51,9 @@ if (isset($_POST['submit'])) {
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../themes/styles.css">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-
-    <script type="text/javascript" src="../JavaScript/Main.js"></script>
-
-    <title>Talker - New Account</title>
-</head>
 
 
-<div class="too-small">
-    <main class="main">
-        <section class="contact section" id="contact">
-            <h2 class="section__title">Create New Account</h2>
-            <span class="span section__subtitle">Please select username and strong password</span>
 
-            <div class="contact__container container grid">
-                <form id="form" action=" " method="POST" class="contact__form grid">
-                    <div class="contact__inputs grid">
-                        <div class="contact__content">
-                            <label for="" class="contact__label"> User Name </label>
-                            <input type="text" maxlength="10" minlength="3" required name="name" class="contact__input">
-                        </div>
-
-
-                       <!--  Comment this if you want to disable user tokens      -->
-                        <div class="contact__content">
-                            <label for="" class="contact__label"> Token </label>
-                            <input type="text"  required name="token" class="contact__input">
-                        </div>
-                        <!--  Comment this if you want to disable user tokens      -->
-
-
-                        <div class="contact__content">
-                            <label for="" class="contact__label"> Password </label>
-                            <input type="password" maxlength="15" minlength="4" required name="password" class="contact__input">
-                        </div>
-
-                        <div class="contact__content">
-                            <label for="" class="contact__label"> Confirm Password </label>
-                            <input type="password" maxlength="15" minlength="4" required name="retyped_password" class="contact__input">
-                        </div>
-                    </div>
-
-                    <div class="button__group_CreateUsers">
-                        <button type="submit" name="submit" class="button button--flex">
-                            Create a Brand new Account
-                            <i class="uil uil-check-circle button__icon"></i>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </section>
-    </main>
-</div>
 
 <div class="main resolution__text">
     <section class="section">

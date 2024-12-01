@@ -11,7 +11,7 @@ $router = new Dispatcher();
             <h2 class="section__title">User Login</h2>
             <span class="span section__subtitle">log in to continue to the website</span>
             <div class="contact__container container grid">
-                <form id="form" action="<?php echo $router->getRelativeControllerPath("NewUser") ?>" method="POST" class="contact__form grid">
+                <form id="form" action="<?php echo $router->getRelativeControllerPath("loginController") ?>" method="POST" class="contact__form grid">
                     <div class="contact__inputs grid">
                         <div class="contact__content">
                             <label for="name" class="contact__label"> User Name </label>

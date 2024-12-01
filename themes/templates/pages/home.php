@@ -9,7 +9,7 @@ $controller_dir = $parameters['controller_dir'];
 
 
 require $_SERVER['DOCUMENT_ROOT'] . $controller_dir . '/Dispatcher.php';
-$router = new Dispatcher("login");
+$router = new Dispatcher("login-view");
 ?>
 
 <!DOCTYPE html>

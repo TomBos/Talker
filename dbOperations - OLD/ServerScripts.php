@@ -9,10 +9,6 @@ if (!file_exists('../FileShare')) {
     mkdir('../FileShare', 0777, true);
 }
 */
-function println(string $string = '')
-{
-    print($string . PHP_EOL);
-}
 
 function consolelog($data)
 {

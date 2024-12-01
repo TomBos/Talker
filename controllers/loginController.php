@@ -14,11 +14,19 @@ $pdo = $db->connectToDatabase();
 
 if ($pdo) {
     echo "Connected successfully!";
+} else {
+    $Tools->Redirect('/');
+}
+
+// $username = $Tools->getCookie("username");
+// $userID = $Tools->getCookie("id");
+
+if (!isset($_POST['user'])) {
+    $Tools->Redirect('/');
 }
 
 
-$Tools->Redirect('/');
-
+$userSubmittedName = strtolower(trim($_POST['name']))
 
 ?>
 
@@ -29,18 +37,8 @@ $Tools->Redirect('/');
 </script>
 
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-$_SESSION['userName'] = "";
-$_SESSION['userID'] = "";
-
-// require 'dbOperations/IninitalizeDB.php';
 
 
-
-if (isset($_POST['user'])) {
     $userSubmittedName = strtolower(trim($_POST['name']));
     $verifyPassword = strtolower(trim($_POST['password']));
     $verifyPassword = crypt($verifyPassword, "salt");
@@ -64,6 +62,5 @@ if (isset($_POST['user'])) {
             header("location: Pages/Chat.php");
         }
     }
-}
 
 -->

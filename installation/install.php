@@ -12,50 +12,29 @@ $db = new Database($credentials);
 if ($db->connectToServer()) {
     echo "Successfully connected to Server !";
     echo "<br>";
+} else {
+    die("Unable to connect to MySQL server.");
 }
 
-// ID Param is always same as well as Primary Key
+// Define Reusable Parameters
 $id = $db->defineAttribute('id', 'int', 11, false, true);
-$primaryKey = $db->definePrimaryKey('id');
-
-
-// ======================== USER TABLE ================================================================= //
-$username = $db->defineAttribute('username', 'varchar', 18);
-$password = $db->defineAttribute('password', 'varchar', 60);
-
-$db->createTable("users", [$id,$username, $password, $primaryKey]);
-
-
-// ======================== MESSAGES TABLE ================================================================= //
-$message = $db->defineAttribute('message', 'varchar', 255);
 $users_id = $db->defineAttribute('users_id', 'int', 11);
+$primaryKey = $db->definePrimaryKey('id');
 $dateTime = $db->defineAttribute('date_time', 'DATETIME');
 
+// ======================== USER TABLE =================================================== //
+$username = $db->defineAttribute('username', 'varchar', 18);
+$password = $db->defineAttribute('password', 'varchar', 60);
+$db->createTable("users", [$id,$username, $password, $primaryKey]);
+
+// ======================== MESSAGES TABLE ============================================== //
+$message = $db->defineAttribute('message', 'varchar', 255);
 $db->createTable("messages", [$id, $message,$users_id,$dateTime, $primaryKey]);
 
+// ======================== FILES TABLE ================================================================= //
+$files = $db->defineAttribute('files', 'varchar', 255);
+$db->createTable("files", [$id, $files,$users_id,$dateTime, $primaryKey]);
 
-
-/*
-
-$createFiles = "CREATE TABLE IF NOT EXISTS `$dataBaseName`.`Files`( 
-    `id` int(3) NOT NULL auto_increment,   
-    `files`  varchar(255) NOT NULL,  
-    `users_id` int(3) NOT NULL,
-    `sended_at` DATETIME,
-    PRIMARY KEY  (`id`))
-";
-if(!mysqli_query($connection, $createFiles)){
-    consolelog("Failed To Create Table Containing Messages!");
-}
-
-$createTokens = "CREATE TABLE IF NOT EXISTS `$dataBaseName`.`TokenTable` (
-    `id` int(3) NOT NULL auto_increment,
-    `UserName` VARCHAR(20) NULL,
-    `Token` VARCHAR(45) NULL,
-    PRIMARY KEY (`id`));";
-if(!mysqli_query($connection, $createTokens)){
-    consolelog("Failed To Create Table Containing Messages!");
-}
-*/
-
-?>
+// ======================== TOKEN TABLE ================================================================= //
+$token = $db->defineAttribute('token', 'varchar', 45);
+$db->createTable("tokens", [$id, $token,$users_id, $primaryKey]);
